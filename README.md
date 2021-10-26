@@ -25,13 +25,13 @@
 | post_code          | string     | null: false                   |
 | prefecture_id      | integer    | null: false                   |
 | city               | string     | null: false                   |
-| address            | string     | null: false                   |
+| addresses          | references | null: false,foreign_key: ture |
 | building_name      | string     |                               |
 | phone_number       | string     | null: false                   |
 
 ### Association
 
-- belongs_to :addresses
+- belongs_to :address
 
 ## products テーブル
 
@@ -49,7 +49,7 @@
 
 ### Association
 
-- has_many :addresses
+- belongs_to :address
 - belongs_to :user
 
 ## addresses テーブル
