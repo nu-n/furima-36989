@@ -16,39 +16,49 @@
 ### Association
 
 - has_many :products
-- belongs_to :destination
 
 ## destination テーブル
 
-| Column             | Type       | Options                   |
-| ------------------ | ---------- | ------------------------- |
-| user_id            | references | null: false, unique: true |
-| post_code          | string     | null: false               |
-| prefecture_id      | integer    | null: false               |
-| city               | string     | null: false               |
-| address            | string     | null: false               |
-| building_name      | string     |                           |
-| phone_number       | string     |                           |
+| Column             | Type       | Options                       |
+| ------------------ | ---------- | ----------------------------- |
+| user_id            | references | null: false,foreign_key: ture |
+| post_code          | string     | null: false                   |
+| prefecture_id      | integer    | null: false                   |
+| city               | string     | null: false                   |
+| address            | string     | null: false                   |
+| building_name      | string     |                               |
+| phone_number       | string     | null: false                   |
 
 ### Association
 
-- belongs_to :user
+- belongs_to :address
 
 ## product テーブル
 
-| Column             | Type    | Options     |
-| ------------------ | ------- | ----------- |
-| name               | string  | null: false |
-| price              | string  | null: false |
-| description        | string  | null: false |
-| condition_id       | integer | null: false |
-| shipping_cost_id   | integer | null: false |
-| shipping_days_id   | integer | null: false |
-| prefecture_id      | integer | null: false |
-| category_id        | integer | null: false |
-| user_id            | integer | null: false |
+| Column             | Type       | Options                       |
+| ------------------ | ---------- | ----------------------------- |
+| name               | string     | null: false                   |
+| price              | integer    | null: false                   |
+| description        | txst       | null: false                   |
+| condition_id       | references | null: false,foreign_key: ture |
+| shipping_cost_id   | references | null: false,foreign_key: ture |
+| shipping_days_id   | references | null: false,foreign_key: ture |
+| prefecture_id      | references | null: false,foreign_key: ture |
+| category_id        | references | null: false,foreign_key: ture |
+| user_id            | references | null: false,foreign_key: ture |
 
 ### Association
 
+- has_many :address
 - belongs_to :user
-- belongs_to_active_hash :prefecture
+
+## address テーブル
+
+| Column             | Type       | Options                       |
+| ------------------ | ---------- | ----------------------------- |
+| product_id         | references | null: false,foreign_key: ture |
+| destination_id     | references | null: false,foreign_key: ture |
+| user_id            | references | null: false,foreign_key: ture |
+
+- belongs_to :product
+- belongs_to :user
