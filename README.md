@@ -25,9 +25,10 @@
 | post_code          | string     | null: false                   |
 | prefecture_id      | integer    | null: false                   |
 | city               | string     | null: false                   |
-| addresses          | references | null: false,foreign_key: ture |
+| address            | integer    | null: false                   |
 | building_name      | string     |                               |
 | phone_number       | string     | null: false                   |
+| user               | references | null: false,foreign_key: ture |
 
 ### Association
 
@@ -45,11 +46,11 @@
 | shipping_days_id   | integer    | null: false,unique: true      |
 | prefecture_id      | integer    | null: false,unique: true      |
 | category_id        | integer    | null: false,unique: true      |
-| user               | references | null: false,unique: true      |
+| user               | references | null: false,foreign_key: ture |
 
 ### Association
 
-- belongs_to :address
+- has_one :address
 - belongs_to :user
 
 ## addresses テーブル
