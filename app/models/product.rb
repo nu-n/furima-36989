@@ -19,8 +19,4 @@ extend ActiveHash::Associations::ActiveRecordExtensions
   validates :category_id,                             numericality: { other_than: 1 , message: "can't be blank"}
   validates :image,                   presence: true
 
-  # priceが半角数字であること numaricality
-  # priceが300−99999999の間であること validates_inclusion_of
-  # Activehashの５つの項目はid１以外を選択していること other_than
-
 end
