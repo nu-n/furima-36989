@@ -46,7 +46,7 @@
 | shipping_days_id   | integer    | null: false,unique: true      |
 | prefecture_id      | integer    | null: false,unique: true      |
 | category_id        | integer    | null: false,unique: true      |
-| user               | references | null: false,foreign_key: ture |
+| user               | references | null: false,foreign_key: true |
 
 ### Association
 
