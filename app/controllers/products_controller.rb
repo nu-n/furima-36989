@@ -2,9 +2,10 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   # before_action :ensure_current_user, only: [:edit, :update]
   # before_action :set_product, only: [:new, :create, :edit, :update]
+  # before_action :product_purchase ,only: :edit
 
   def index
-    # @products = Product.all
+    @products = Product.order("created_at DESC")
   end
 
   def new
@@ -19,6 +20,17 @@ class ProductsController < ApplicationController
       render :new
     end
   end
+
+  # def edit
+  #   @product = Product.find(params[:id])
+  # end
+    
+  # def product_purchase
+  #   @product = Product.find(params[:id])
+  #    if @product.purchase
+  #     redirect_to root_path
+  #    end
+  # end
 
   private
   def product_params
