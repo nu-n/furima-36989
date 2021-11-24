@@ -10,6 +10,11 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    if user_signed_in?
+       @product = Product.new
+    else
+       redirect_to user_session_path(@product.id)
+    end
   end
 
   def create
@@ -20,6 +25,10 @@ class ProductsController < ApplicationController
       render :new
     end
   end
+
+  def show
+    @product = Product.find(params[:id])
+  end 
 
   # def edit
   #   @product = Product.find(params[:id])
@@ -34,7 +43,7 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :image, :description, :category_id, :condition_id, :shipping_cost_id, :prefecture_id, :shipping_days_id, :price).merge(user_id: current_user.id)
+    params.require(:product).permit(:name, :image, :description, :category_id, :condition_id, :shipping_cost_id, :prefecture_id, :shipping_day_id, :price).merge(user_id: current_user.id)
   end
 
   # def ensure_current_user

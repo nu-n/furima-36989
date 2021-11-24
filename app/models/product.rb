@@ -14,7 +14,7 @@ extend ActiveHash::Associations::ActiveRecordExtensions
   validates :description,             presence: true
   validates :condition_id,                            numericality: { other_than: 1 , message: "can't be blank"}
   validates :shipping_cost_id,                        numericality: { other_than: 1 , message: "can't be blank"}
-  validates :shipping_days_id,                        numericality: { other_than: 1 , message: "can't be blank"}
+  validates :shipping_day_id,                        numericality: { other_than: 1 , message: "can't be blank"}
   validates :prefecture_id,                           numericality: { other_than: 1 , message: "can't be blank"}
   validates :category_id,                             numericality: { other_than: 1 , message: "can't be blank"}
   validates :image,                   presence: true

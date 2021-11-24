@@ -73,8 +73,8 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include("Shipping cost can't be blank")
       end
 
-      it 'shipping_days_idが１では出品できない' do
-        @product.shipping_days_id = '1'
+      it 'shipping_day_idが１では出品できない' do
+        @product.shipping_day_id = '1'
         @product.valid?
         expect(@product.errors.full_messages).to include("Shipping days can't be blank")
       end
