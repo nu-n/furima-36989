@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :edit, :update]
   # before_action :ensure_current_user, only: [:edit, :update]
   # before_action :set_product, only: [:new, :create, :edit, :update]
   # before_action :product_purchase ,only: :edit
@@ -25,9 +25,21 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end 
 
-  # def edit
-  #   @product = Product.find(params[:id])
-  # end
+  def edit
+    @product = Product.find(params[:id])
+    unless current_user == @product.user
+      redirect_to products_path
+    end
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      redirect_to products_path
+    else
+      render :edit
+    end
+  end
     
   # def product_purchase
   #   @product = Product.find(params[:id])
