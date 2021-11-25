@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
-  # before_action :ensure_current_user, only: [:edit, :update]
-  # before_action :set_product, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :edit, :update]
+  before_action :set_product, only: [:new, :create, :edit, :update, :show]
   # before_action :product_purchase ,only: :edit
 
   def index
@@ -13,7 +12,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
     if @product.save
       redirect_to products_path
     else
@@ -22,12 +20,21 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
   end 
 
-  # def edit
-  #   @product = Product.find(params[:id])
-  # end
+  def edit
+    unless current_user == @product.user
+      redirect_to products_path
+    end
+  end
+
+  def update
+    if @product.update(product_params)
+      redirect_to products_path
+    else
+      render :edit
+    end
+  end
     
   # def product_purchase
   #   @product = Product.find(params[:id])
@@ -48,7 +55,7 @@ class ProductsController < ApplicationController
   #   end
   # end
 
-  # def set_product
-  #   @product = Product.find(params[:id])
-  # end
+  def set_product
+    @product = Product.find(params[:id])
+  end
 end
