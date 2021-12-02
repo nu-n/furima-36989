@@ -6,7 +6,7 @@ extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :condition
   belongs_to :shipping_cost
   belongs_to :shipping_day
-  # has_one :address
+  has_one :destination
   belongs_to :user
 
   validates :name,                    presence: true
@@ -14,7 +14,7 @@ extend ActiveHash::Associations::ActiveRecordExtensions
   validates :description,             presence: true
   validates :condition_id,                            numericality: { other_than: 1 , message: "can't be blank"}
   validates :shipping_cost_id,                        numericality: { other_than: 1 , message: "can't be blank"}
-  validates :shipping_day_id,                        numericality: { other_than: 1 , message: "can't be blank"}
+  validates :shipping_day_id,                         numericality: { other_than: 1 , message: "can't be blank"}
   validates :prefecture_id,                           numericality: { other_than: 1 , message: "can't be blank"}
   validates :category_id,                             numericality: { other_than: 1 , message: "can't be blank"}
   validates :image,                   presence: true

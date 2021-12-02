@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :set_product, only: [:edit, :update, :show, :destroy]
-  # before_action :product_purchase ,only: :edit
+  before_action :product_purchase ,only: :edit
 
   def index
     @products = Product.order("created_at DESC")
@@ -45,13 +45,11 @@ class ProductsController < ApplicationController
       render :show
     end
   end
-    
-  # def product_purchase
-  #   @product = Product.find(params[:id])
-  #    if @product.purchase
-  #     redirect_to root_path
-  #    end
-  # end
+
+  # def  done
+  #   @product_purchaser= Product.find(params[:id])
+  #   @product_purchaser.update( purchaser_id: current_user.id)
+  #  end
 
   private
   def product_params
@@ -68,4 +66,12 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
+
+  def product_purchase
+     if @product.destination
+      redirect_to root_path
+     end
+  end
+
+  
 end
